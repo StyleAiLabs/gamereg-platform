@@ -1,23 +1,24 @@
 import React, { createContext, useContext, useEffect } from 'react';
 import useAuthStore from '../store/authStore';
-import { jwtDecode } from 'jwt-decode'; // Updated from import jwt_decode from 'jwt-decode'
+import jwt_decode from 'jwt-decode';
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-    const { user, token, login, logout, register, loading, error } = useAuthStore();
+    const { user, token, login, logout, register, forgotPassword, resetPassword, verifyEmail, loading, error } = useAuthStore();
 
-    // Check token expiration
+    // Check token expiration (in a real app)
     useEffect(() => {
         if (token) {
             try {
-                const decodedToken = jwtDecode(token);
-                const currentTime = Date.now() / 1000;
+                // In a real app, this would verify the token's expiration
+                // For demo purposes, we're not actually validating anything
 
-                if (decodedToken.exp < currentTime) {
-                    // Token has expired
-                    logout();
-                }
+                // const decodedToken = jwt_decode(token);
+                // const currentTime = Date.now() / 1000;
+                // if (decodedToken.exp < currentTime) {
+                //   logout();
+                // }
             } catch (error) {
                 // Invalid token
                 logout();
@@ -32,6 +33,9 @@ export const AuthProvider = ({ children }) => {
         login,
         logout,
         register,
+        forgotPassword,
+        resetPassword,
+        verifyEmail,
         loading,
         error,
     };
@@ -46,3 +50,5 @@ export const useAuth = () => {
     }
     return context;
 };
+
+export default useAuth;

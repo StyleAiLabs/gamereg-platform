@@ -6,6 +6,9 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import GroupsIcon from '@mui/icons-material/Groups';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
 import { useAuth } from '../hooks/useAuth';
 
 const Home = () => {
@@ -90,6 +93,7 @@ const Home = () => {
                             textAlign: 'center',
                         }}
                     >
+                        <SportsEsportsIcon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
                         <Typography variant="h5" component="h2" gutterBottom>
                             Join Games
                         </Typography>
@@ -109,6 +113,7 @@ const Home = () => {
                             textAlign: 'center',
                         }}
                     >
+                        <GroupsIcon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
                         <Typography variant="h5" component="h2" gutterBottom>
                             Form Groups
                         </Typography>
@@ -128,6 +133,7 @@ const Home = () => {
                             textAlign: 'center',
                         }}
                     >
+                        <EqualizerIcon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
                         <Typography variant="h5" component="h2" gutterBottom>
                             Track Progress
                         </Typography>

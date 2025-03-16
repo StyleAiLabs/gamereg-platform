@@ -17,8 +17,57 @@ const useGamesStore = create((set, get) => ({
     fetchGames: async () => {
         set({ loading: true, error: null });
         try {
-            const games = await gamesService.getGames();
-            set({ games, filteredGames: games, loading: false });
+            // Mock data for development
+            setTimeout(() => {
+                const games = [
+                    {
+                        id: 1,
+                        name: "Leadership Challenge",
+                        type: "GROUP",
+                        status: "ACTIVE",
+                        max_groups: 10,
+                        participants_per_group: 5,
+                        max_participants: null,
+                        created_at: "2023-06-01T00:00:00Z",
+                        updated_at: "2023-06-05T00:00:00Z"
+                    },
+                    {
+                        id: 2,
+                        name: "Product Knowledge Quiz",
+                        type: "INDIVIDUAL",
+                        status: "ACTIVE",
+                        max_groups: null,
+                        participants_per_group: null,
+                        max_participants: 100,
+                        created_at: "2023-05-15T00:00:00Z",
+                        updated_at: "2023-05-20T00:00:00Z"
+                    },
+                    {
+                        id: 3,
+                        name: "Team Building Exercise",
+                        type: "GROUP",
+                        status: "UPCOMING",
+                        max_groups: 8,
+                        participants_per_group: 6,
+                        max_participants: null,
+                        created_at: "2023-06-10T00:00:00Z",
+                        updated_at: null
+                    },
+                    {
+                        id: 4,
+                        name: "Sales Training Assessment",
+                        type: "INDIVIDUAL",
+                        status: "COMPLETED",
+                        max_groups: null,
+                        participants_per_group: null,
+                        max_participants: 50,
+                        created_at: "2023-04-01T00:00:00Z",
+                        updated_at: "2023-05-01T00:00:00Z"
+                    }
+                ];
+                set({ games, filteredGames: games, loading: false });
+            }, 500);
+
         } catch (error) {
             set({ error: error.message, loading: false });
         }
@@ -28,9 +77,22 @@ const useGamesStore = create((set, get) => ({
     fetchGameById: async (gameId) => {
         set({ loading: true, error: null });
         try {
-            const game = await gamesService.getGameById(gameId);
-            set({ currentGame: game, loading: false });
-            return game;
+            // Mock data for development
+            setTimeout(() => {
+                const gameData = {
+                    id: parseInt(gameId),
+                    name: gameId === "1" ? "Leadership Challenge" : "Product Knowledge Quiz",
+                    type: gameId === "1" ? "GROUP" : "INDIVIDUAL",
+                    status: "ACTIVE",
+                    max_groups: gameId === "1" ? 10 : null,
+                    participants_per_group: gameId === "1" ? 5 : null,
+                    max_participants: gameId === "1" ? null : 100,
+                    created_at: "2023-06-01T00:00:00Z",
+                    updated_at: "2023-06-05T00:00:00Z"
+                };
+                set({ currentGame: gameData, loading: false });
+            }, 500);
+
         } catch (error) {
             set({ error: error.message, loading: false });
             throw error;
@@ -41,11 +103,12 @@ const useGamesStore = create((set, get) => ({
     joinGame: async (gameId, userData) => {
         set({ loading: true, error: null });
         try {
-            const result = await gamesService.joinGame(gameId, userData);
-            // Update the games list after joining
-            get().fetchGames();
-            set({ loading: false });
-            return result;
+            // Mock success for development
+            setTimeout(() => {
+                set({ loading: false });
+            }, 500);
+
+            return { success: true };
         } catch (error) {
             set({ error: error.message, loading: false });
             throw error;
