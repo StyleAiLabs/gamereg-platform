@@ -21,7 +21,7 @@ import MyGames from './pages/games/MyGames';
 import Groups from './pages/groups/Groups';
 import GroupDetails from './pages/groups/GroupDetails';
 import MyGroups from './pages/groups/MyGroups';
-// import Profile from './pages/Profile';
+import Profile from './pages/Profile';
 import Notifications from './pages/Notifications';
 
 const AppRoutes = () => {
@@ -43,7 +43,7 @@ const AppRoutes = () => {
                 <Route path="/groups" element={<Groups />} />
                 <Route path="/groups/:id" element={<GroupDetails />} />
                 <Route path="/my-groups" element={<MyGroups />} />
-                {/* <Route path="/profile" element={<Profile />} /> */}
+                <Route path="/profile" element={<Profile />} />
                 <Route path="/notifications" element={<Notifications />} />
             </Route>
 
